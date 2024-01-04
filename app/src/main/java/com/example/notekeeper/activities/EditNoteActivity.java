@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.EditText;
 
 import com.example.notekeeper.R;
+import com.example.notekeeper.utils.Utility;
 
 public class EditNoteActivity extends AppCompatActivity {
 	private EditText editTextBox;
@@ -25,6 +26,6 @@ public class EditNoteActivity extends AppCompatActivity {
 	@Override
 	protected void onPause() {
 		super.onPause();
-		MainActivity.noteDatabase.notesDAO().updateNote(noteId, String.valueOf(editTextBox.getText()));
+		MainActivity.noteDatabase.notesDAO().updateNote(noteId, Utility.removeWhiteSpace(String.valueOf(editTextBox.getText())));
 	}
 }

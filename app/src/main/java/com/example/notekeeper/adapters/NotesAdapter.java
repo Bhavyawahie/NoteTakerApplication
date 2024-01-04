@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.notekeeper.activities.MainActivity;
+import com.example.notekeeper.utils.Utility;
 import com.example.notekeeper.viewholders.NotesViewHolder;
 import com.example.notekeeper.R;
 import com.example.notekeeper.entity.NotesEntity;
@@ -34,7 +35,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesViewHolder> {
 	@Override
 	public void onBindViewHolder(@NonNull NotesViewHolder notesViewHolder, int position) {
 		NotesEntity currentNote = notes.get(position);
-		notesViewHolder.getTextView().setText(currentNote.getNoteContent());
+		notesViewHolder.getTextView().setText(Utility.truncateText(currentNote.getNoteContent(), 18));
 		notesViewHolder.getLinearLayoutContainerView().setTag(currentNote);
 	}
 
