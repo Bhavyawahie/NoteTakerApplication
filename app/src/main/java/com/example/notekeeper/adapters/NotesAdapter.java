@@ -1,5 +1,6 @@
 package com.example.notekeeper.adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,10 +8,10 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.notekeeper.MainActivity;
-import com.example.notekeeper.entity.NotesEntity;
+import com.example.notekeeper.activities.MainActivity;
 import com.example.notekeeper.viewholders.NotesViewHolder;
 import com.example.notekeeper.R;
+import com.example.notekeeper.entity.NotesEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ import java.util.List;
 public class NotesAdapter extends RecyclerView.Adapter<NotesViewHolder> {
 	private List<NotesEntity> notes;
 
-	public NotesAdapter() {
+	public NotesAdapter(Context applicationContext) {
 		notes = new ArrayList<>();
 		reload();
 	}
@@ -34,6 +35,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesViewHolder> {
 	public void onBindViewHolder(@NonNull NotesViewHolder notesViewHolder, int position) {
 		NotesEntity currentNote = notes.get(position);
 		notesViewHolder.getTextView().setText(currentNote.getNoteContent());
+		notesViewHolder.getLinearLayoutContainerView().setTag(currentNote);
 	}
 
 	@Override
