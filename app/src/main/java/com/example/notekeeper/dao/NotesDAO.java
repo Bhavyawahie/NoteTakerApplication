@@ -17,4 +17,7 @@ public interface NotesDAO {
 
 	@Query("UPDATE notes SET noteContent = :noteContent WHERE id = :id")
 	void updateNote(long id, String noteContent);
+
+	@Query("DELETE FROM notes WHERE id = :id")
+	void deleteNote(long id);
 }
