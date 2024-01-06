@@ -1,11 +1,13 @@
 package com.example.notekeeper.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import com.example.notekeeper.R;
 import com.example.notekeeper.adapters.NotesAdapter;
@@ -45,5 +47,16 @@ public class MainActivity extends AppCompatActivity {
 	protected void onResume() {
 		super.onResume();
 		recyclerViewAdapter.reload();
+	}
+
+	@Override
+	public boolean onContextItemSelected(@NonNull MenuItem item) {
+				// Extract the data passed in the Intent
+				long id = item.getIntent().getLongExtra("id", 0);
+				// Now you have the primary key ID and can do whatever you need with it
+				// For example, you can delete the item or perform any other action
+				noteDatabase.notesDAO().deleteNote(id);
+				recyclerViewAdapter.reload();
+				return true;
 	}
 }
